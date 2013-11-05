@@ -1,17 +1,29 @@
 package com.mobilerq.amazonaws.sns;
 
+import java.util.Arrays;
+import java.util.Iterator;
+
 /**
  * Amazon Resource Names (ARNs) uniquely identify AWS resources.
  */
 public class Arn {
+
+    private static final String DELIM = ":";
+    private static final String HEAD = "arn" + DELIM + "aws" + DELIM;
     private final String value;
+    // cache arn components. never serialize
     private transient String[] components;
 
     public Arn(String value) {
-        if (value == null) {
-            throw new NullPointerException();
-        }
-        this.value = value;
+        this.value = notNull(value, "arn");
+    }
+
+    public Arn(String service, String region, String account, String resource) {
+        this.value = HEAD +
+                notNull(service, "service") + DELIM +
+                notNull(region, "region") + DELIM +
+                notNull(account, "account") + DELIM +
+                notNull(resource, "resource");
     }
 
     public String service() {
@@ -28,7 +40,19 @@ public class Arn {
 
     public String resource() {
         final String[] components = getComponents();
-        return components.length == 6 ? components[5] : (String.format("%s:%s", components[5], components[6]));
+        if (components.length == 6) {
+            return components[5];
+        } else {
+            final StringBuilder out = new StringBuilder();
+            final Iterator<String> itr = Arrays.asList(components).subList(5, components.length).iterator();
+            while (itr.hasNext()) {
+                out.append(itr.next());
+                if (itr.hasNext()) {
+                    out.append(DELIM);
+                }
+            }
+            return out.toString();
+        }
     }
 
     @Override
@@ -54,6 +78,14 @@ public class Arn {
     }
 
     private String[] getComponents() {
-        return (components == null) ? (components = value.split(":")) : components;
+        return (components == null) ? (components = value.split(DELIM)) : components;
+    }
+
+    private String notNull(String value, String message) {
+        if (value == null) {
+            throw new NullPointerException(message);
+        } else {
+            return value;
+        }
     }
 }
