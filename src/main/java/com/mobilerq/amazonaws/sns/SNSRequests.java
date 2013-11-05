@@ -20,7 +20,7 @@ public class SNSRequests {
         return new CreatePlatformApplicationRequestBuilder(Platform.ADM, name, clientSecret);
     }
 
-    public static CreatePlatformEndpointRequestBuilder createEndpoint(PlatformApplicationArn arn, String token) {
+    public static CreatePlatformEndpointRequestBuilder createEndpoint(ApplicationArn arn, String token) {
         return new CreatePlatformEndpointRequestBuilder(arn, token);
     }
 

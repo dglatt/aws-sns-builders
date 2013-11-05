@@ -11,7 +11,7 @@ public class DeletePlatformApplicationRequestBuilderTest {
 
     @Test
     public void testConstructor() throws Exception {
-        PlatformApplicationArn arn1 = new PlatformApplicationArn("a1");
+        ApplicationArn arn1 = new ApplicationArn("a1");
         DeletePlatformApplicationRequest r = new DeletePlatformApplicationRequestBuilder(arn1)
                 .getRequest();
         assertEquals(arn1.toString(), r.getPlatformApplicationArn());
@@ -19,8 +19,8 @@ public class DeletePlatformApplicationRequestBuilderTest {
 
     @Test
     public void testPlatformApplicationArn() throws Exception {
-        PlatformApplicationArn arn1 = new PlatformApplicationArn("a1");
-        PlatformApplicationArn arn2 = new PlatformApplicationArn("a2");
+        ApplicationArn arn1 = new ApplicationArn("a1");
+        ApplicationArn arn2 = new ApplicationArn("a2");
         DeletePlatformApplicationRequest r = new DeletePlatformApplicationRequestBuilder(arn1)
                 .platformApplicationArn(arn2)
                 .getRequest();
@@ -29,7 +29,7 @@ public class DeletePlatformApplicationRequestBuilderTest {
 
     @Test
     public void testRequestCredentials() throws Exception {
-        PlatformApplicationArn arn1 = new PlatformApplicationArn("a1");
+        ApplicationArn arn1 = new ApplicationArn("a1");
         AWSCredentials mockCredentials = mock(AWSCredentials.class);
         DeletePlatformApplicationRequest r = new DeletePlatformApplicationRequestBuilder(arn1)
                 .requestCredentials(mockCredentials)
@@ -39,8 +39,8 @@ public class DeletePlatformApplicationRequestBuilderTest {
 
     @Test
     public void testGetRequest() throws Exception {
-        PlatformApplicationArn arn1 = new PlatformApplicationArn("a1");
-        PlatformApplicationArn arn2 = new PlatformApplicationArn("a2");
+        ApplicationArn arn1 = new ApplicationArn("a1");
+        ApplicationArn arn2 = new ApplicationArn("a2");
         AWSCredentials mockCredentials = mock(AWSCredentials.class);
         DeletePlatformApplicationRequest r = new DeletePlatformApplicationRequestBuilder(arn1)
                 .requestCredentials(mockCredentials)

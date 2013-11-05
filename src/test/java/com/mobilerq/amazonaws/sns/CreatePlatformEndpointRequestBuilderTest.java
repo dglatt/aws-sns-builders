@@ -9,7 +9,7 @@ public class CreatePlatformEndpointRequestBuilderTest {
 
     @Test
     public void testARNAndTokenConstructor() throws Exception {
-        CreatePlatformEndpointRequest r = new CreatePlatformEndpointRequestBuilder(new PlatformApplicationArn("a1"), "t1")
+        CreatePlatformEndpointRequest r = new CreatePlatformEndpointRequestBuilder(new ApplicationArn("a1"), "t1")
                 .getRequest();
         assertEquals("a1", r.getPlatformApplicationArn());
         assertEquals("t1", r.getToken());
@@ -17,15 +17,15 @@ public class CreatePlatformEndpointRequestBuilderTest {
 
     @Test
     public void testPlatformApplicationArn() throws Exception {
-        CreatePlatformEndpointRequest r = new CreatePlatformEndpointRequestBuilder(new PlatformApplicationArn("a1"), "t1")
-                .platformApplicationArn(new PlatformApplicationArn("a2"))
+        CreatePlatformEndpointRequest r = new CreatePlatformEndpointRequestBuilder(new ApplicationArn("a1"), "t1")
+                .platformApplicationArn(new ApplicationArn("a2"))
                 .getRequest();
         assertEquals("a2", r.getPlatformApplicationArn());
     }
 
     @Test
     public void testToken() throws Exception {
-        CreatePlatformEndpointRequest r = new CreatePlatformEndpointRequestBuilder(new PlatformApplicationArn("a1"), "t1")
+        CreatePlatformEndpointRequest r = new CreatePlatformEndpointRequestBuilder(new ApplicationArn("a1"), "t1")
                 .token("t2")
                 .getRequest();
         assertEquals("t2", r.getToken());
@@ -33,7 +33,7 @@ public class CreatePlatformEndpointRequestBuilderTest {
 
     @Test
     public void testCustomUserData() throws Exception {
-        CreatePlatformEndpointRequest r = new CreatePlatformEndpointRequestBuilder(new PlatformApplicationArn("a1"), "t1")
+        CreatePlatformEndpointRequest r = new CreatePlatformEndpointRequestBuilder(new ApplicationArn("a1"), "t1")
                 .customUserData("c1")
                 .getRequest();
         assertEquals("c1", r.getCustomUserData());
@@ -41,7 +41,7 @@ public class CreatePlatformEndpointRequestBuilderTest {
 
     @Test
     public void testAttribute() throws Exception {
-        CreatePlatformEndpointRequest r = new CreatePlatformEndpointRequestBuilder(new PlatformApplicationArn("a1"), "t1")
+        CreatePlatformEndpointRequest r = new CreatePlatformEndpointRequestBuilder(new ApplicationArn("a1"), "t1")
                 .attribute("ak1", "av1")
                 .getRequest();
         assertEquals("av1", r.getAttributes().get("ak1"));
@@ -49,10 +49,10 @@ public class CreatePlatformEndpointRequestBuilderTest {
 
     @Test
     public void testGetRequest() throws Exception {
-        CreatePlatformEndpointRequest r = new CreatePlatformEndpointRequestBuilder(new PlatformApplicationArn("a1"), "t1")
+        CreatePlatformEndpointRequest r = new CreatePlatformEndpointRequestBuilder(new ApplicationArn("a1"), "t1")
                 .attribute("ak1", "av1")
                 .customUserData("c1")
-                .platformApplicationArn(new PlatformApplicationArn("a2"))
+                .platformApplicationArn(new ApplicationArn("a2"))
                 .token("t2")
                 .getRequest();
         assertEquals("av1", r.getAttributes().get("ak1"));

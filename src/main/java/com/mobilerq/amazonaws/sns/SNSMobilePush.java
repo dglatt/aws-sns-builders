@@ -4,8 +4,6 @@ import com.amazonaws.services.sns.model.CreatePlatformApplicationRequest;
 import com.amazonaws.services.sns.model.CreatePlatformEndpointRequest;
 import com.amazonaws.services.sns.model.PublishRequest;
 
-import java.util.Map;
-
 /**
  * An interface for pushing messages to mobile apps using Amazon SNS.
  */
@@ -17,7 +15,7 @@ public interface SNSMobilePush {
      * @param request A request to create a Platform Application Arn.
      * @return The platform application Arn for the app.
      */
-    public PlatformApplicationArn createPlatformApplicationARN(CreatePlatformApplicationRequest request);
+    public ApplicationArn createPlatformApplicationARN(CreatePlatformApplicationRequest request);
 
     /**
      * Create an Endpoint. This corresponds to an app on a device. Use {@link CreatePlatformEndpointRequestBuilder}.
@@ -37,9 +35,9 @@ public interface SNSMobilePush {
     /**
      * Delete the platform application Arn.
      *
-     * @param platformApplicationArn The Arn to delete
+     * @param applicationArn The Arn to delete
      */
-    public void delete(PlatformApplicationArn platformApplicationArn);
+    public void delete(ApplicationArn applicationArn);
 
     /**
      * Publish a push message. Use {@link PublishRequestBuilder}.

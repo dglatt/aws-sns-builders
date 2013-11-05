@@ -17,25 +17,25 @@ public class SNSMobilePushClient implements SNSMobilePush {
         snsClient = amazonSNS;
     }
 
-    public PlatformApplicationArn createAPNSApp(InputStream p12, char[] p12password) {
+    public ApplicationArn createAPNSApp(InputStream p12, char[] p12password) {
         return createPlatformApplicationARN(new CreatePlatformApplicationRequestBuilder(Platform.APNS, p12, p12password).getRequest());
     }
 
-    public PlatformApplicationArn createAPNSSandboxApp(InputStream p12, char[] p12password) {
+    public ApplicationArn createAPNSSandboxApp(InputStream p12, char[] p12password) {
         return createPlatformApplicationARN(new CreatePlatformApplicationRequestBuilder(Platform.APNS_SANDBOX, p12, p12password).getRequest());
     }
 
-    public PlatformApplicationArn createGCMApp(String name, String apiKey) {
+    public ApplicationArn createGCMApp(String name, String apiKey) {
         return createPlatformApplicationARN(new CreatePlatformApplicationRequestBuilder(Platform.GCM, name, apiKey).getRequest());
     }
 
-    public PlatformApplicationArn createADMApp(String name, String secret) {
+    public ApplicationArn createADMApp(String name, String secret) {
         return createPlatformApplicationARN(new CreatePlatformApplicationRequestBuilder(Platform.ADM, name, secret).getRequest());
     }
 
     @Override
-    public PlatformApplicationArn createPlatformApplicationARN(CreatePlatformApplicationRequest request) {
-        return new PlatformApplicationArn(snsClient.createPlatformApplication(request).getPlatformApplicationArn());
+    public ApplicationArn createPlatformApplicationARN(CreatePlatformApplicationRequest request) {
+        return new ApplicationArn(snsClient.createPlatformApplication(request).getPlatformApplicationArn());
     }
 
     @Override
@@ -49,7 +49,7 @@ public class SNSMobilePushClient implements SNSMobilePush {
     }
 
     @Override
-    public void delete(PlatformApplicationArn arn) {
+    public void delete(ApplicationArn arn) {
         snsClient.deletePlatformApplication(new DeletePlatformApplicationRequest().withPlatformApplicationArn(arn.toString()));
     }
 

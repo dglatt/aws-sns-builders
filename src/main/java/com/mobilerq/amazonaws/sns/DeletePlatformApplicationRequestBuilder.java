@@ -10,11 +10,11 @@ import com.amazonaws.services.sns.model.DeletePlatformApplicationRequest;
 public class DeletePlatformApplicationRequestBuilder {
     private DeletePlatformApplicationRequest request = new DeletePlatformApplicationRequest();
 
-    public DeletePlatformApplicationRequestBuilder(PlatformApplicationArn arn) {
+    public DeletePlatformApplicationRequestBuilder(ApplicationArn arn) {
         platformApplicationArn(arn);
     }
 
-    public DeletePlatformApplicationRequestBuilder platformApplicationArn(PlatformApplicationArn arn) {
+    public DeletePlatformApplicationRequestBuilder platformApplicationArn(ApplicationArn arn) {
         request.setPlatformApplicationArn(arn.toString());
         return this;
     }

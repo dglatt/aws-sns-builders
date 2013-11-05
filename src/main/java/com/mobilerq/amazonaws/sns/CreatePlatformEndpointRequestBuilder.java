@@ -9,11 +9,11 @@ public class CreatePlatformEndpointRequestBuilder {
 
     private CreatePlatformEndpointRequest request = new CreatePlatformEndpointRequest();
 
-    public CreatePlatformEndpointRequestBuilder(PlatformApplicationArn arn, String token) {
+    public CreatePlatformEndpointRequestBuilder(ApplicationArn arn, String token) {
         platformApplicationArn(arn).token(token);
     }
 
-    public CreatePlatformEndpointRequestBuilder platformApplicationArn(PlatformApplicationArn arn) {
+    public CreatePlatformEndpointRequestBuilder platformApplicationArn(ApplicationArn arn) {
         request.setPlatformApplicationArn(arn.toString());
         return this;
     }
